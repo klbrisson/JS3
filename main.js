@@ -18,9 +18,10 @@ while (isValid === false) {
 //BIRTH DATE
 isValid = false;
 while (isValid === false) {	
-	var birthDate = prompt('Please enter your birth day in the following format xx/xx/xx');
-	if (birthDate.charAt(2) === '/' && birthDate.charAt(5) === '/' && isNumber(birthDate.substring(0,1))
-		&& isNumber(birthDate.substring(3,4)) && isNumber(birthDate.substring(6,7))) {
+	var birthDate = prompt('Please enter your birth day in the following format MM/DD/YY');
+	if (birthDate.charAt(2) === '/' && birthDate.charAt(5) === '/' 
+		&& +birthDate.substring(0,2) > 0 && +birthDate.substring(0,2) <= 12
+		&& +birthDate.substring(3,5) > 0 && +birthDate.substring(3,5) <= 31) {
 		alert('Thank You! Your birth day is ' + birthDate);
 		isValid = true;
 	}
@@ -30,8 +31,7 @@ while (isValid === false) {
 isValid = false;
 while (isValid === false) {
 	var postalCode = prompt('Enter your postal code (xxxxx or xxxxx-xxxx)');
-	if ((postalCode.length === 5 && isNumber(postalCode)) || 
-		(postalCode.length === 10 && postalCode.charAt(5) === '-' && isNumber(postalCode.substring(0,4)) && isNumber(postalCode.substring(6,9)))) {
+	if (isNumber(postalCode.substring(0,4)) && (postalCode.length === 5) || (postalCode.length === 10 && postalCode.charAt(5) === '-' && isNumber(postalCode.substring(6,9)))) {
 		alert('Thank You! Your postal code is ' + postalCode);
 		isValid = true;
 	}
@@ -41,7 +41,7 @@ while (isValid === false) {
 isValid = false;
 	while (isValid === false) {
 	var state = prompt('Enter your state abbreviation. Format XX');
-	if (state.length === 2 && state === state.toUpperCase()) {
+	if (state.length===2 && state.charCodeAt(0)>=65 && state.charCodeAt(0)<=90 && state.charCodeAt(1)>=65 && state.charCodeAt(1)<=90) {
 		alert('Thank You! Your state is ' + state);
 		isValid = true;
 	}
